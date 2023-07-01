@@ -7,15 +7,16 @@ type EditedTask = {
 
 type State = {
   editedTask: EditedTask
-  updateEditedTask: (payload: EditedTask) => void // payloadは引数
+  updateEditedTask: (task: EditedTask) => void // taskは引数
   resetEditedTask: () => void
 }
 
+/* editedTaskの状態を管理 */
 const useStore = create<State>((set) => ({
   editedTask: { id: 0, title: '' }, // 初期値
-  updateEditedTask: (payload) =>
+  updateEditedTask: (task) =>
     set({
-      editedTask: payload,
+      editedTask: task,
     }),
   resetEditedTask: () => set({ editedTask: { id: 0, title: '' } }),
 }))

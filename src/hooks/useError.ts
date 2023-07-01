@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { CsrfToken } from '../types'
 import useStore from '../store'
 
+/* エラーハンドリング */
 export const useError = () => {
   const navigate = useNavigate()
   const resetEditedTask = useStore((state) => state.resetEditedTask)
@@ -12,7 +13,8 @@ export const useError = () => {
     )
     axios.defaults.headers.common['X-CSRF-TOKEN'] = data.csrf_token
   }
-  // エラーメッセージによって処理を分岐
+
+  /* エラーメッセージによって処理を分岐 */
   const switchErrorHandling = (msg: string) => {
     // 引数のmsgはエラーメッセージ
     switch (msg) {

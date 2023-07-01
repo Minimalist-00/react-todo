@@ -8,20 +8,24 @@ export const Auth = () => {
   const [isLogin, setIsLogin] = useState(true)
   const { loginMutation, signupMutation } = useMutateAuth()
 
+  /* Submitボタンをクリックした時の処理
+     ログイン or サインインのミューテーションが実行される */
   const submitAuthHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (isLogin) {
-      // デフォルトはtrue
+      // デフォルトはLogin
       loginMutation.mutate({
         email: email,
         password: pw,
       })
     } else {
-      await signupMutation
+      // 非同期処理の完了を待つために、awaitとmutateAsyncを使用
+      await signupMutation // Promiseを返す
         .mutateAsync({
           email: email,
           password: pw,
         })
+        // signupMutationが成功したら、自動でログインを行う
         .then(() =>
           loginMutation.mutate({
             email: email,
@@ -35,7 +39,7 @@ export const Auth = () => {
       <div className="flex items-center">
         <CheckBadgeIcon className="h-8 w-8 mr-2 text-blue-500" />
         <span className="text-center text-3xl font-extrabold">
-          Todo App / React(TypeScript) + Go(Echo, GORM) + PostgreSQL
+          Todo Application / React + Go
         </span>
       </div>
       <h2 className="my-6">{isLogin ? 'ログイン' : 'サインアップ'}</h2>
