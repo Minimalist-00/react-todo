@@ -11,7 +11,7 @@ export const useMutateTask = () => {
 
   const createTaskMutation = useMutation(
     (task: { title: string }) =>
-      // Omit<Task, 'id' | 'created_at' | 'updated_at'> と title: string は同じ
+      // Omit<Task, 'id' | 'created_at' | 'updated_at'> と title: string どちらでもOK
       axios.post<Task>(`${process.env.REACT_APP_API_URL}/tasks`, task), // 引数で受け取ったtaskをエンドポイントに投げる
     {
       onSuccess: (res) => {
@@ -34,7 +34,7 @@ export const useMutateTask = () => {
   )
   const updateTaskMutation = useMutation(
     (
-      task: { title: string; id: number } // updateではtitleとidを参照する
+      task: { title: string; id: number } // updateではcreated_atとupdated_atは不要
     ) =>
       axios.put<Task>(`${process.env.REACT_APP_API_URL}/tasks/${task.id}`, {
         title: task.title,
