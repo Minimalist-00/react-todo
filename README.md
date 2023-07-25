@@ -7,14 +7,3 @@
 #### バックエンド（Rest API）
 
 [![My Skills](https://skillicons.dev/icons?i=go,docker,postgres,postman)](https://skillicons.dev)
-
-a
-s
-s
-s
-s
-s
-s
-s
-s
-s
